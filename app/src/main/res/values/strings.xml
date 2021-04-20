@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyNewsFeed</string>
+    <string name="textView">My News Feed</string>
+    <string name="ETuser">User</string>
+    <string name="ETpass">Password</string>
+    <string name="buttonLogin">Login</string>
+    <string name="text_view1">Allow Location?</string>
+    <string name="buttonLogout">Log out</string>
+    <string name="bt_location">Allow Location</string>
+</resources>
