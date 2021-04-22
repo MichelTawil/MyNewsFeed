@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -29,8 +30,11 @@ public class AllowLocation extends AppCompatActivity {
 
     //Inicializar variables
     Button btLocation;
-    TextView textView1, textView2, textView3, textView4, textView5;
+    TextView textView1, textView2, textView3, textView4, textView5, tvUser;
     Button Blogout;
+    Button btDeny;
+
+    String Pais;
 
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -47,6 +51,14 @@ public class AllowLocation extends AppCompatActivity {
         textView3 = findViewById(R.id.text_view3);
         textView4 = findViewById(R.id.text_view4);
         textView5 = findViewById(R.id.text_view5);
+        btDeny = findViewById(R.id.bt_deny);
+        tvUser = findViewById(R.id.tv_user);
+
+        //Obtenemos los datos de Sharedpreferences y ponemos en nombre en el textview tv_user
+        SharedPreferences preferences = getSharedPreferences("Userinfo", MODE_PRIVATE);
+        String registeredUsername = preferences.getString("username","");
+
+        tvUser.setText(registeredUsername);
 
         //Inicializamos fusedLocationProviderClient
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -60,6 +72,9 @@ public class AllowLocation extends AppCompatActivity {
 
                     ////Cuando obtenemos el permiso
                     getLocation();
+                    //Llamar a la activity CantContinue
+                    Intent intent = new Intent(AllowLocation.this, Feed1.class);
+                    startActivity(intent);
                 } else {
                     //Cuando no obtenemos el permiso
                     ActivityCompat.requestPermissions(AllowLocation.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
@@ -68,6 +83,15 @@ public class AllowLocation extends AppCompatActivity {
             }
         });
 
+        btDeny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    //Cuando no obtenemos el permiso
+                //Llamar a la activity CantContinue
+                Intent intent = new Intent(AllowLocation.this, CantContinue.class);
+                startActivity(intent);
+                }
+        });
 
         Blogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,15 +134,22 @@ public class AllowLocation extends AppCompatActivity {
                         //Poner longitud en textview
                         textView2.setText("Longitud = "+ addresses.get(0).getLongitude()
                         );
-                        //Poner el nombre del pais
+                        //Poner el nombre del pais en textview
                         textView3.setText("Pais = "+ addresses.get(0).getCountryName()
                         );
-                        //Poner localidad
+                        Pais = addresses.get(0).getCountryName();
+
+                        //Poner localidad en textview
                         textView4.setText("Localidad = "+ addresses.get(0).getLocality()
                         );
-                        //Poner direccion
+                        //Poner direccion en textview
                         textView5.setText("Direccion = "+ addresses.get(0).getAddressLine(0)
                         );
+
+                        //Le enviamos la variable Pais a Feed1
+                        Intent intent = new Intent(AllowLocation.this,Feed1.class);
+                        intent.putExtra("Pais", Pais);
+                        startActivity(intent);
 
                     } catch (IOException e) {
                         e.printStackTrace();

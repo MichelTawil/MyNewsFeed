@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Feed2">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorwhite"
+        android:padding="10dp"
+        android:text="News"
+        android:textAlignment="center"
+        android:textColor="@color/colorblack"
+        android:textSize="20sp" />
+
+<!--    <GridLayout-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:paddingTop="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:columnCount="2"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:background="@drawable/black_background"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:rowCount="2">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <Button&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/button"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="36dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_row="0"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_column="1"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="right"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:background="@android:drawable/ic_menu_search"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:drawableRight="@drawable/ic_baseline_search_24"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:paddingLeft="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="Button" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <EditText&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/editTextTextPersonName2"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_row="0"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_column="0"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_columnWeight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:background="@android:color/darker_gray"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:columnCount="2"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:ems="10"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:hint="Search"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:padding="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:rowCount="2"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textColor="@color/colorwhite"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textColorHint="@color/colorwhite"/>&ndash;&gt;-->
+<!--    </GridLayout>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="624dp"
+        android:layout_marginTop="80dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+
+
+</FrameLayout>

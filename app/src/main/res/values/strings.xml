@@ -6,5 +6,14 @@
     <string name="buttonLogin">Login</string>
     <string name="text_view1">Allow Location?</string>
     <string name="buttonLogout">Log out</string>
-    <string name="bt_location">Allow Location</string>
+    <string name="bt_location">Allow</string>
+    <string name="bt_deny">Deny</string>
+    <string name="tv_aviso">You cannot continue if you do not accept location permissions for My News Feed</string>
+    <string name="bt_allow">Allow access to the location</string>
+    <string name="title_activity_feed1">Feed1</string>
+    <string name="button_Signup">Sign Up</string>
+    <string name="tv_or">Or</string>tv_signup
+    <string name="tv_signup">Sign Up</string>
+    <string name="b_register">Register</string>
+
 </resources>
