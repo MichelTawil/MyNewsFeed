@@ -1,14 +1,16 @@
 package com.example.mynewsfeed;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.mynewsfeed.Model.Articles;
 import com.example.mynewsfeed.Model.Headlines;
@@ -21,35 +23,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Feed2 extends AppCompatActivity {
+import static com.example.mynewsfeed.R.id.recyclerView;
 
-
-    String Pais;
+public class Fragment1 extends Fragment {
 
     RecyclerView recyclerView;
     final String API_KEY = "31f26933fa804cfd9a23407a58c0d55a";
     Adapter adapter;
     List<Articles> articles = new ArrayList<>();
+    private Object View;
 
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed2);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment1_layout, container, false);
 
-        //Obtenemos el recyclerView desde Adapter.java
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String country = getCountry();
-        retrieveJson(country,API_KEY);
-
-
-        //Recibimos la variable Pais desde AllowLocation
-        Pais = getIntent().getStringExtra("Pais");
-
-
-
-
+        //recyclerView = findViewById(R.id.recyclerView);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //String country = getCountry();
+        //retrieveJson(country,API_KEY);
     }
+
+
 
 
     private void retrieveJson(String country, String apiKey){
@@ -61,14 +57,14 @@ public class Feed2 extends AppCompatActivity {
                 if(response.isSuccessful() && response.body().getArticles() != null){
                     articles.clear();
                     articles = response.body().getArticles();
-                    adapter = new Adapter(Feed2.this,articles);
+                    adapter = new Adapter(getActivity(),articles);
                     recyclerView.setAdapter(adapter);
                 }
             }
 
             @Override
             public void onFailure(Call<Headlines> call, Throwable t) {
-                Toast.makeText(Feed2.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -82,3 +78,6 @@ public class Feed2 extends AppCompatActivity {
 
 
 }
+
+
+

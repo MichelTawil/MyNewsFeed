@@ -42,4 +42,6 @@ public class Headlines {
     public void setArticles(List<Articles> articles) {
         this.articles = articles;
     }
+
+
 }

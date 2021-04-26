@@ -5,18 +5,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Feed2">
+    tools:context=".NewsListFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorwhite"
-        android:padding="10dp"
-        android:text="My News Feed"
-        android:paddingLeft="1dp"
-        android:backgroundTint="@color/colorwhite"
-        android:textColor="@color/colorblack"
-        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:backgroundTint="@color/colorwhite"

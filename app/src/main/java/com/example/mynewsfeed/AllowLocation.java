@@ -151,6 +151,8 @@ public class AllowLocation extends AppCompatActivity {
                         intent.putExtra("Pais", Pais);
                         startActivity(intent);
 
+
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

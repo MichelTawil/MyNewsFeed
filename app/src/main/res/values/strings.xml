@@ -15,5 +15,12 @@
     <string name="tv_or">Or</string>tv_signup
     <string name="tv_signup">Sign Up</string>
     <string name="b_register">Register</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Your Location Country</string>
+    <string name="tab_text_2">International</string>
+    <string name="tab_text_3">Local</string>
+    <string name="title_activity_tabbed_">Tabbed_Activity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
