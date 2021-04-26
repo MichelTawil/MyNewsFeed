@@ -35,13 +35,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = NewsListFragment.newInstance("");
+                fragment = NewsListFragment.newInstance("us", "technology"); //enviamos url hacia NewsListFragment
                 break;
             case 1:
-                fragment = NewsListFragment.newInstance("");
+                fragment = NewsListFragment.newInstance("mx", "technology");
                 break;
             case 2:
-                fragment = NewsListFragment.newInstance("");
+                fragment = NewsListFragment.newInstance("au", "technology");
                 break;
         }
         return fragment;

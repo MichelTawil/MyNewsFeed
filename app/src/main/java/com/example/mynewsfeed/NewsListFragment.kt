@@ -17,12 +17,13 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-private const val ARG_PARAM1 = "param1"
-
+private const val ARG_URL = "url_param"
+private const val ARG_TEMA = "tema_param"
 
 class NewsListFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null //?si queremos que sea null
+    private var url: String? = null //?si queremos que sea null
+    private var tema: String? = null //?si queremos que sea null
     var rv: RecyclerView? = null
 
     val API_KEY = "31f26933fa804cfd9a23407a58c0d55a"
@@ -32,8 +33,8 @@ class NewsListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-
+            url = it.getString(ARG_URL) //Obtenemos esta variable desde Sections page Adapter "us", "mx, "es"
+            tema = it.getString(ARG_TEMA)
         }
     }
 
@@ -49,14 +50,14 @@ class NewsListFragment : Fragment() {
         rv = view.findViewById(R.id.recyclerView)
         rv?.setLayoutManager(LinearLayoutManager(activity))
         val country: String? = getCountry()
-        if (!country.isNullOrEmpty()) {  //Validamos que no sea null ni este vacio
-            retrieveJson(country, API_KEY)
+        if (!country.isNullOrEmpty() && !url.isNullOrEmpty() && !tema.isNullOrEmpty()) {  //Validamos que no sea null ni este vacio
+            retrieveJson(country, API_KEY, url!!, tema!!)
         }
 
     }
 
-    private fun retrieveJson(country: String, apiKey: String) {
-        val call = ApiClient.getInstance().api.getHeadlines(country, apiKey)
+    private fun retrieveJson(country: String, apiKey: String, url: String, tema: String) { //Obtenemos url desde SectionsPagerAdapter y se la enviamos a la api
+        val call = ApiClient.getInstance().api.getHeadlines(url, apiKey, tema) //Enviamos variable obtenida de Sections Page Adpater hacia el API reques
         call.enqueue(object : Callback<Headlines> {
             override fun onResponse(call: Call<Headlines>, response: Response<Headlines>) {
                 if (response.isSuccessful && response.body()!!.articles != null) {
@@ -77,10 +78,11 @@ class NewsListFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(url: String) =
-                NewsListFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, url)
+        fun newInstance(url: String, tema: String) = //: regresa un tipo de dato de ese tipo
+                NewsListFragment().apply {//SectionsPagerAdapter.java linea 38
+                    arguments = Bundle().apply { //Pasa info de activity a fragment y viceversa
+                        putString(ARG_URL, url) //(Key, Valor)
+                        putString(ARG_TEMA, tema) //(Key, Valor)
                     }
                 }
     }

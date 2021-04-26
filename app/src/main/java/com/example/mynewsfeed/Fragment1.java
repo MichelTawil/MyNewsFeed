@@ -48,33 +48,33 @@ public class Fragment1 extends Fragment {
 
 
 
-    private void retrieveJson(String country, String apiKey){
+    //private void retrieveJson(String country, String apiKey){
 
-        Call<Headlines> call = ApiClient.getInstance().getApi().getHeadlines(country, apiKey);
-        call.enqueue(new Callback<Headlines>() {
-            @Override
-            public void onResponse(Call<Headlines> call, Response<Headlines> response) {
-                if(response.isSuccessful() && response.body().getArticles() != null){
-                    articles.clear();
-                    articles = response.body().getArticles();
-                    adapter = new Adapter(getActivity(),articles);
-                    recyclerView.setAdapter(adapter);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Headlines> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public String getCountry(){
-
-        Locale locale = Locale.getDefault();
-        String country = locale.getCountry();
-        return country.toLowerCase();
-    }
+       // Call<Headlines> call = ApiClient.getInstance().getApi().getHeadlines(country, apiKey, tema);
+        //call.enqueue(new Callback<Headlines>() {
+           // @Override
+            //public void onResponse(Call<Headlines> call, Response<Headlines> response) {
+                //if(response.isSuccessful() && response.body().getArticles() != null){
+                  //  articles.clear();
+                  //  articles = response.body().getArticles();
+                   // adapter = new Adapter(getActivity(),articles);
+                   // recyclerView.setAdapter(adapter);
+               // }
+           // }
+//
+//            @Override
+//            public void onFailure(Call<Headlines> call, Throwable t) {
+//                Toast.makeText(getActivity(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//
+//    public String getCountry(){
+//
+//        Locale locale = Locale.getDefault();
+//        String country = locale.getCountry();
+//        return country.toLowerCase();
+//    }
 
 
 }

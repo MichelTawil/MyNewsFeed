@@ -25,6 +25,7 @@ public class Feed2 extends AppCompatActivity {
 
 
     String Pais;
+    String tema;
 
     RecyclerView recyclerView;
     final String API_KEY = "31f26933fa804cfd9a23407a58c0d55a";
@@ -54,7 +55,7 @@ public class Feed2 extends AppCompatActivity {
 
     private void retrieveJson(String country, String apiKey){
 
-        Call<Headlines> call = ApiClient.getInstance().getApi().getHeadlines(country, apiKey);
+        Call<Headlines> call = ApiClient.getInstance().getApi().getHeadlines(country, apiKey, tema);
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {
