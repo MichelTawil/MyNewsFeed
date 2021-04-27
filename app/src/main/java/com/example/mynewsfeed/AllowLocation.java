@@ -73,7 +73,7 @@ public class AllowLocation extends AppCompatActivity {
                     ////Cuando obtenemos el permiso
                     getLocation();
                     //Llamar a la activity CantContinue
-                    Intent intent = new Intent(AllowLocation.this, Feed1.class);
+                    Intent intent = new Intent(AllowLocation.this, Tabbed_Activity.class);
                     startActivity(intent);
                 } else {
                     //Cuando no obtenemos el permiso

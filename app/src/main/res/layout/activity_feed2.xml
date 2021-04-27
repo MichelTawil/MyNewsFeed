@@ -19,11 +19,11 @@
         android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:backgroundTint="@color/colorwhite"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="650dp"
-        android:layout_marginTop="80dp">
+        android:layout_height="651dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/colorwhite">
 
 
     </androidx.recyclerview.widget.RecyclerView>
