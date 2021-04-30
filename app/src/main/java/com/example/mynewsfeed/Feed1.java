@@ -36,18 +36,6 @@ public class Feed1 extends AppCompatActivity {
         Pais = getIntent().getStringExtra("Pais");
         tvPais.setText("Pais: "+ Pais);
 
-        //Le enviamos la variable Pais a Feed2
-        Intent intent = new Intent(Feed1.this,Feed2.class);
-        intent.putExtra("Pais", Pais);
-        startActivity(intent);
-
-        //Le enviamos la variable Pais a ApiInterface
-        //Intent intent2 = new Intent(Feed1.this,ApiInterface.class);
-        //intent.putExtra("Pais", Pais);
-        //startActivity(intent2);
-
-
-
 
 
         btlo.setOnClickListener(new View.OnClickListener() {

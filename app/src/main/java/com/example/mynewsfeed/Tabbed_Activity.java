@@ -1,5 +1,6 @@
 package com.example.mynewsfeed;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mynewsfeed.Model.Articles;
@@ -46,8 +47,12 @@ public class Tabbed_Activity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Toast.makeText(Tabbed_Activity.this, "Obteniendo ubicacion del dispositivo...", Toast.LENGTH_SHORT).show();
+
+                //Lamamos acticity Ubicacion_Activity
+                //Llamar a la activity AllowLocation
+                Intent intent = new Intent(Tabbed_Activity.this, Ubicacion_Activity1.class);
+                startActivity(intent);
             }
         });
     }
