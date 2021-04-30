@@ -47,11 +47,11 @@ public class AllowLocation extends AppCompatActivity {
         //Asignar variables
         Blogout = findViewById(R.id.buttonLogout);
         btLocation = findViewById(R.id.bt_location);
-        textView1 = findViewById(R.id.text_view1);
-        textView2 = findViewById(R.id.text_view2);
-        textView3 = findViewById(R.id.text_view3);
-        textView4 = findViewById(R.id.text_view4);
-        textView5 = findViewById(R.id.text_view5);
+//        textView1 = findViewById(R.id.text_view1);
+//        textView2 = findViewById(R.id.text_view2);
+//        textView3 = findViewById(R.id.text_view3);
+//        textView4 = findViewById(R.id.text_view4);
+//        textView5 = findViewById(R.id.text_view5);
         btDeny = findViewById(R.id.bt_deny);
         tvUser = findViewById(R.id.tv_user);
 
@@ -61,7 +61,7 @@ public class AllowLocation extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("Userinfo", MODE_PRIVATE);
         String registeredUsername = preferences.getString("username","");
 
-        tvUser.setText(registeredUsername);
+        tvUser.setText("User: " + registeredUsername);
 
         //Inicializamos fusedLocationProviderClient
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -123,19 +123,19 @@ public class AllowLocation extends AppCompatActivity {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(), 1);
 
                         //Poner latitud en textview
-                        textView1.setText("Latitud = "+ addresses.get(0).getLatitude()
+                        String Latitud = ("Latitud = "+ addresses.get(0).getLatitude()
                         );
                         //Poner longitud en textview
-                        textView2.setText("Longitud = "+ addresses.get(0).getLongitude()
+                        String Longitud = ("Longitud = "+ addresses.get(0).getLongitude()
                         );
                         //Poner el nombre del pais en textview
-                        textView3.setText("Pais = "+ addresses.get(0).getCountryName()
+                        String Pais =("Pais = "+ addresses.get(0).getCountryName()
                         );
                         //Poner localidad en textview
-                        textView4.setText("Localidad = "+ addresses.get(0).getLocality()
+                        String Localidad =("Localidad = "+ addresses.get(0).getLocality()
                         );
                         //Poner direccion en textview
-                        textView5.setText("Direccion = "+ addresses.get(0).getAddressLine(0)
+                        String Direccion =("Direccion = "+ addresses.get(0).getAddressLine(0)
                         );
 
 

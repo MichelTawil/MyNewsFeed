@@ -52,7 +52,7 @@ public class CantContinue extends AppCompatActivity {
                     ////Cuando obtenemos el permiso
                     getLocation();
                     //Llamar a la activity Feed1
-                    Intent intent = new Intent(CantContinue.this, Feed1.class);
+                    Intent intent = new Intent(CantContinue.this, Tabbed_Activity.class);
                     startActivity(intent);
                 } else {
                     //Cuando no obtenemos el permiso
@@ -101,9 +101,6 @@ public class CantContinue extends AppCompatActivity {
                         //Poner direccion en variable
                         String Direccion = addresses.get(0).getAddressLine(0);
 
-                        Intent intent = new Intent(CantContinue.this,Feed1.class);
-                        intent.putExtra("Pais", Pais);
-                        startActivity(intent);
 
                     } catch (IOException e) {
                         e.printStackTrace();
