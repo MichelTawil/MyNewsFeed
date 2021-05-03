@@ -43,7 +43,7 @@ public class Tabbed_Activity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-
+//...
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

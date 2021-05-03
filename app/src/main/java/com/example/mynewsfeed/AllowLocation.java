@@ -54,7 +54,7 @@ public class AllowLocation extends AppCompatActivity {
 //        textView5 = findViewById(R.id.text_view5);
         btDeny = findViewById(R.id.bt_deny);
         tvUser = findViewById(R.id.tv_user);
-
+//...
         final SharedPreferences pref = getSharedPreferences("Deviceinfo", MODE_PRIVATE);
 
         //Obtenemos los datos de Sharedpreferences y ponemos en nombre en el textview tv_user

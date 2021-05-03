@@ -40,7 +40,7 @@ public class Ubicacion_Activity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ubicacion_1);
 
-
+//...
         //Asignar variables
         tv_usuario = findViewById(R.id.tv_usuario);
         tv_latitud = findViewById(R.id.tv_latitud);

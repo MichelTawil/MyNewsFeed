@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorwhite"
         android:theme="@style/AppTheme.AppBarOverlay">
-
+<!--//...-->
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
