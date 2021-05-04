@@ -3,6 +3,9 @@ package com.example.mynewsfeed;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Intent;
@@ -30,11 +33,12 @@ public class AllowLocation extends AppCompatActivity {
 
     //Inicializar variables
     Button btLocation;
-    TextView textView1, textView2, textView3, textView4, textView5, tvUser;
+    TextView tvUser;
     Button Blogout;
     Button btDeny;
     SharedPreferences pref;
     SharedPreferences.Editor Edi;
+    String Pais;
 
 
         FusedLocationProviderClient fusedLocationProviderClient;
@@ -47,11 +51,6 @@ public class AllowLocation extends AppCompatActivity {
         //Asignar variables
         Blogout = findViewById(R.id.buttonLogout);
         btLocation = findViewById(R.id.bt_location);
-//        textView1 = findViewById(R.id.text_view1);
-//        textView2 = findViewById(R.id.text_view2);
-//        textView3 = findViewById(R.id.text_view3);
-//        textView4 = findViewById(R.id.text_view4);
-//        textView5 = findViewById(R.id.text_view5);
         btDeny = findViewById(R.id.bt_deny);
         tvUser = findViewById(R.id.tv_user);
 //...
@@ -77,6 +76,7 @@ public class AllowLocation extends AppCompatActivity {
                     getLocation();
                     //Llamar a la activity Tabbed_Activity y enviar variables
                     Intent intent_tabbed = new Intent(AllowLocation.this, Tabbed_Activity.class);
+                    intent_tabbed.putExtra("Pais", Pais);
                     startActivity(intent_tabbed);
                 } else {
                     //Cuando no obtenemos el permiso
@@ -137,6 +137,9 @@ public class AllowLocation extends AppCompatActivity {
                         //Poner direccion en textview
                         String Direccion =("Direccion = "+ addresses.get(0).getAddressLine(0)
                         );
+
+
+
 
 
                     } catch (IOException e) {

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mynewsfeed.ui.main.SectionsPagerAdapter;
@@ -31,6 +32,7 @@ import retrofit2.Response;
 
 public class Tabbed_Activity extends AppCompatActivity {
 
+    TextView tvPais, Title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,11 @@ public class Tabbed_Activity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
+//        tvPais = findViewById(R.id.tv_pais);
+//        Title = findViewById(R.id.title);
+//
+//        String Pais = getIntent().getStringExtra("Pais");
+//        Title.setText(Pais);
 //...
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
