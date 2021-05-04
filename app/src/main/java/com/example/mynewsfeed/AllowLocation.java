@@ -3,6 +3,9 @@ package com.example.mynewsfeed;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Intent;
@@ -30,13 +33,15 @@ public class AllowLocation extends AppCompatActivity {
 
     //Inicializar variables
     Button btLocation;
-    TextView textView1, textView2, textView3, textView4, textView5, tvUser;
+    TextView tvUser;
     Button Blogout;
     Button btDeny;
-
+    SharedPreferences pref;
+    SharedPreferences.Editor Edi;
     String Pais;
 
-    FusedLocationProviderClient fusedLocationProviderClient;
+
+        FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,21 +49,18 @@ public class AllowLocation extends AppCompatActivity {
         setContentView(R.layout.activity_allow_location);
 
         //Asignar variables
-        Blogout = (Button) findViewById(R.id.buttonLogout);
+        Blogout = findViewById(R.id.buttonLogout);
         btLocation = findViewById(R.id.bt_location);
-        textView1 = findViewById(R.id.text_view1);
-        textView2 = findViewById(R.id.text_view2);
-        textView3 = findViewById(R.id.text_view3);
-        textView4 = findViewById(R.id.text_view4);
-        textView5 = findViewById(R.id.text_view5);
         btDeny = findViewById(R.id.bt_deny);
         tvUser = findViewById(R.id.tv_user);
+//...
+        final SharedPreferences pref = getSharedPreferences("Deviceinfo", MODE_PRIVATE);
 
         //Obtenemos los datos de Sharedpreferences y ponemos en nombre en el textview tv_user
         SharedPreferences preferences = getSharedPreferences("Userinfo", MODE_PRIVATE);
         String registeredUsername = preferences.getString("username","");
 
-        tvUser.setText(registeredUsername);
+        tvUser.setText("User: " + registeredUsername);
 
         //Inicializamos fusedLocationProviderClient
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -72,12 +74,16 @@ public class AllowLocation extends AppCompatActivity {
 
                     ////Cuando obtenemos el permiso
                     getLocation();
-                    //Llamar a la activity CantContinue
-                    Intent intent = new Intent(AllowLocation.this, Feed1.class);
-                    startActivity(intent);
+                    //Llamar a la activity Tabbed_Activity y enviar variables
+                    Intent intent_tabbed = new Intent(AllowLocation.this, Tabbed_Activity.class);
+                    intent_tabbed.putExtra("Pais", Pais);
+                    startActivity(intent_tabbed);
                 } else {
                     //Cuando no obtenemos el permiso
                     ActivityCompat.requestPermissions(AllowLocation.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+                    //Llamar a la activity Tabbed_Activity
+                    Intent intent_cant = new Intent(AllowLocation.this, CantContinue.class);
+                    startActivity(intent_cant);
 
                 }
             }
@@ -103,19 +109,7 @@ public class AllowLocation extends AppCompatActivity {
 
             }
         });
-    }
 
-    private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
             public void onComplete(@NonNull Task<Location> task) {
@@ -129,27 +123,22 @@ public class AllowLocation extends AppCompatActivity {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(), 1);
 
                         //Poner latitud en textview
-                        textView1.setText("Latitud = "+ addresses.get(0).getLatitude()
+                        String Latitud = ("Latitud = "+ addresses.get(0).getLatitude()
                         );
                         //Poner longitud en textview
-                        textView2.setText("Longitud = "+ addresses.get(0).getLongitude()
+                        String Longitud = ("Longitud = "+ addresses.get(0).getLongitude()
                         );
                         //Poner el nombre del pais en textview
-                        textView3.setText("Pais = "+ addresses.get(0).getCountryName()
+                        String Pais =("Pais = "+ addresses.get(0).getCountryName()
                         );
-                        Pais = addresses.get(0).getCountryName();
-
                         //Poner localidad en textview
-                        textView4.setText("Localidad = "+ addresses.get(0).getLocality()
+                        String Localidad =("Localidad = "+ addresses.get(0).getLocality()
                         );
                         //Poner direccion en textview
-                        textView5.setText("Direccion = "+ addresses.get(0).getAddressLine(0)
+                        String Direccion =("Direccion = "+ addresses.get(0).getAddressLine(0)
                         );
 
-                        //Le enviamos la variable Pais a Feed1
-                        Intent intent = new Intent(AllowLocation.this,Feed1.class);
-                        intent.putExtra("Pais", Pais);
-                        startActivity(intent);
+
 
 
 
@@ -159,5 +148,19 @@ public class AllowLocation extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
     }
 }

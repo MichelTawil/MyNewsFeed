@@ -20,9 +20,6 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    //Old login
-    //private String Username = "Michel";
-    //private String Password = "123";
 
     String Username, Password;
 

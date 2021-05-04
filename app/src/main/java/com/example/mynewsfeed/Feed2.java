@@ -45,7 +45,7 @@ public class Feed2 extends AppCompatActivity {
 
 
         //Recibimos la variable Pais desde AllowLocation
-        Pais = getIntent().getStringExtra("Pais");
+        //Pais = getIntent().getStringExtra("Pais");
 
 
 

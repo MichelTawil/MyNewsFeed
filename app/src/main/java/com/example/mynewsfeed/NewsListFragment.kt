@@ -57,7 +57,7 @@ class NewsListFragment : Fragment() {
     }
 
     private fun retrieveJson(country: String, apiKey: String, url: String, tema: String) { //Obtenemos url desde SectionsPagerAdapter y se la enviamos a la api
-        val call = ApiClient.getInstance().api.getHeadlines(url, apiKey, tema) //Enviamos variable obtenida de Sections Page Adpater hacia el API reques
+        val call = ApiClient.getInstance().api.getHeadlines(url, apiKey, tema) //Enviamos variable obtenida de Sections Page Adpater hacia el API request
         call.enqueue(object : Callback<Headlines> {
             override fun onResponse(call: Call<Headlines>, response: Response<Headlines>) {
                 if (response.isSuccessful && response.body()!!.articles != null) {
