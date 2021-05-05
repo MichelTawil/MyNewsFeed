@@ -24,6 +24,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
+    
+    String pais = "us";
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
@@ -35,7 +37,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = NewsListFragment.newInstance("us", "technology"); //enviamos url hacia NewsListFragment
+                fragment = NewsListFragment.newInstance(pais, "technology"); //enviamos url hacia NewsListFragment
                 break;
             case 1:
                 fragment = NewsListFragment.newInstance("mx", "technology");

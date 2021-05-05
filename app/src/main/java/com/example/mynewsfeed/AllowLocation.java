@@ -40,7 +40,6 @@ public class AllowLocation extends AppCompatActivity {
     SharedPreferences.Editor Edi;
     String Pais;
 
-
         FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
@@ -75,8 +74,14 @@ public class AllowLocation extends AppCompatActivity {
                     ////Cuando obtenemos el permiso
                     getLocation();
                     //Llamar a la activity Tabbed_Activity y enviar variables
+
+
                     Intent intent_tabbed = new Intent(AllowLocation.this, Tabbed_Activity.class);
-                    intent_tabbed.putExtra("Pais", Pais);
+                    //if(Pais != null) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Pais", Pais);
+                        intent_tabbed.putExtras(bundle);
+                    //}
                     startActivity(intent_tabbed);
                 } else {
                     //Cuando no obtenemos el permiso
@@ -129,7 +134,7 @@ public class AllowLocation extends AppCompatActivity {
                         String Longitud = ("Longitud = "+ addresses.get(0).getLongitude()
                         );
                         //Poner el nombre del pais en textview
-                        String Pais =("Pais = "+ addresses.get(0).getCountryName()
+                         Pais =("Pais = "+ addresses.get(0).getCountryName()
                         );
                         //Poner localidad en textview
                         String Localidad =("Localidad = "+ addresses.get(0).getLocality()
@@ -137,7 +142,6 @@ public class AllowLocation extends AppCompatActivity {
                         //Poner direccion en textview
                         String Direccion =("Direccion = "+ addresses.get(0).getAddressLine(0)
                         );
-
 
 
 

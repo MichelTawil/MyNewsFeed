@@ -32,7 +32,8 @@ import retrofit2.Response;
 
 public class Tabbed_Activity extends AppCompatActivity {
 
-    TextView tvPais, Title;
+    TextView Title, Value;
+    String pais, paisCortado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,16 @@ public class Tabbed_Activity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-//        tvPais = findViewById(R.id.tv_pais);
-//        Title = findViewById(R.id.title);
-//
-//        String Pais = getIntent().getStringExtra("Pais");
-//        Title.setText(Pais);
-//...
+        Title = findViewById(R.id.title);
+
+        //if (pais != null) {
+            Bundle bundle = new Bundle();
+            bundle = this.getIntent().getExtras();
+            String pais = bundle.getString("Pais");
+            String paisCortado = pais.substring(7, 13);
+            Title.setText(paisCortado);
+        //}
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

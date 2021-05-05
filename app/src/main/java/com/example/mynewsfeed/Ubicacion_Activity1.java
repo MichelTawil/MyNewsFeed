@@ -32,6 +32,7 @@ public class Ubicacion_Activity1 extends AppCompatActivity {
     //Inicializar variables
     TextView tv_usuario, tv_latitud, tv_longitud, tv_pais, tv_municipio, tv_direccion;
     Button button_home, button_back;
+    String Pais;
 
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -89,6 +90,8 @@ public class Ubicacion_Activity1 extends AppCompatActivity {
                             //Poner direccion en textview
                             tv_direccion.setText("Direccion = " + addresses.get(0).getAddressLine(0)
                             );
+                            Pais =("Pais = "+ addresses.get(0).getCountryName()
+                            );
 
 
                         } catch (IOException e) {
@@ -114,6 +117,11 @@ public class Ubicacion_Activity1 extends AppCompatActivity {
             public void onClick(View v) {
                 //Llamar a la activity AllowLocation
                 Intent intent = new Intent(Ubicacion_Activity1.this, Tabbed_Activity.class);
+                if(Pais != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Pais", Pais);
+                    intent.putExtras(bundle);
+                }
                 startActivity(intent);
 
             }

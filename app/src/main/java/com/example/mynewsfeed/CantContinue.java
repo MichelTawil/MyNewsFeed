@@ -27,6 +27,7 @@ public class CantContinue extends AppCompatActivity {
 
     //Inicializar variables
     Button btAllow;
+    String Pais;
 
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -53,6 +54,11 @@ public class CantContinue extends AppCompatActivity {
                     getLocation();
                     //Llamar a la activity Feed1
                     Intent intent = new Intent(CantContinue.this, Tabbed_Activity.class);
+                    if(Pais != null) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Pais", Pais);
+                        intent.putExtras(bundle);
+                    }
                     startActivity(intent);
                 } else {
                     //Cuando no obtenemos el permiso
@@ -61,19 +67,7 @@ public class CantContinue extends AppCompatActivity {
                 }
             }
         });
-    }
 
-    private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
             public void onComplete(@NonNull Task<Location> task) {
@@ -86,21 +80,21 @@ public class CantContinue extends AppCompatActivity {
                         //Inicializar lista de direcciones
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(), 1);
 
-                        //Poner latitud en variable
-                        double Latitud = addresses.get(0).getLatitude();
-
-                        //Poner longitud en variable
-                        double Longitud = addresses.get(0).getLongitude();
-
-                        //Poner el nombre del pais en variable
-                        String Pais = addresses.get(0).getCountryName();
-
-                        //Poner localidad en variable
-                        String Localidad = addresses.get(0).getLocality();
-
-                        //Poner direccion en variable
-                        String Direccion = addresses.get(0).getAddressLine(0);
-
+                        //Poner latitud en textview
+                        String Latitud = ("Latitud = "+ addresses.get(0).getLatitude()
+                        );
+                        //Poner longitud en textview
+                        String Longitud = ("Longitud = "+ addresses.get(0).getLongitude()
+                        );
+                        //Poner el nombre del pais en textview
+                        Pais =("Pais = "+ addresses.get(0).getCountryName()
+                        );
+                        //Poner localidad en textview
+                        String Localidad =("Localidad = "+ addresses.get(0).getLocality()
+                        );
+                        //Poner direccion en textview
+                        String Direccion =("Direccion = "+ addresses.get(0).getAddressLine(0)
+                        );
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -108,5 +102,20 @@ public class CantContinue extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
     }
 }
